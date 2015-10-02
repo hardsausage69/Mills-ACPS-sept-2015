@@ -165,16 +165,10 @@ public class Illuminati
     
     public static void botPyr()
     {
-        for (int i = 1; i <= 130; i++)
-        {
-            System.out.print("0");
-        }
+        gotSumZeroes(130);
         System.out.println();
         System.out.print(" ");
-        for (int j = 1; j <= 128; j++)
-        {
-            System.out.print("0");
-        }
+        gotSumZeroes(128);
     }
     
     public static void spaces(int lines)
