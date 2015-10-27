@@ -5,10 +5,10 @@
 import java.util.*;
 public class homecoming{
     static final String MYNAME = "Allen";
-    Scanner scannerInput = new Scanner(System.in);
+    public static Scanner scannerInput = new Scanner(System.in);
     public static void main(String[] args){
-        getADate();
-        damage();
+        String inputName = getADate();
+        damage(inputName);
     }
     public static String getADate(){
         System.out.println("Hi! My name is " + MYNAME);
@@ -17,10 +17,10 @@ public class homecoming{
         System.out.print("Nice to meet you ");
         String theirName = scannerInput.nextLine();
         System.out.println("Would you like to go to Homecoming with me?");;
-        Sysetm.out.print("Great! It'll be a magical night -- " + MYNAME + " and " + theirName + "are going to the Mills Homecoming Dance 2015!");
+        System.out.println("Great! It'll be a magical night -- " + MYNAME + " and " + theirName + " are going to the Mills Homecoming Dance 2015!");
         return theirName;
     }
-    public static void damage(){
+    public static void damage(String inputName){
         System.out.println("What are your estimated costs?");
         System.out.print("Tickets: ");
         Double tickets = scannerInput.nextDouble();
@@ -34,10 +34,10 @@ public class homecoming{
         Double clothes = scannerInput.nextDouble();
         System.out.print("Any other expenses: ");
         Double expenses = scannerInput.nextDouble();
-        Sysetm.out.println("So, you should expect to spend, including tax, ");
-        statsTable(tickets, flowers, pictures, dinner, clothes, expenses);
+        System.out.println("So, you should expect to spend, including tax, ");
+        statsTable(inputName, tickets, flowers, pictures, dinner, clothes, expenses);
     }
-    public static void statsTable(double tickets, double flowers, double pictures, double dinner, double clothes, double expenses){
+    public static void statsTable(String theirName, double tickets, double flowers, double pictures, double dinner, double clothes, double expenses){
         System.out.println("MHS Homecoming 2015");
         System.out.println(MYNAME + " and " + theirName);
         System.out.println();
@@ -49,7 +49,7 @@ public class homecoming{
         System.out.println("Any other expenses: " + expenses);
         double subtotal = (2 * tickets) + flowers + pictures + (2 * dinner) + clothes + expenses;
         System.out.println("Subtotal " + subtotal);
-        double salesTax = (int)(0.0825 * subtotal * 100);
+        double salesTax = (int)(8.25 * (subtotal - pictures - (2 * tickets) - flowers));
         salesTax /= 100;
         System.out.println("Sales Tax " + salesTax);
         double total = salesTax + subtotal;

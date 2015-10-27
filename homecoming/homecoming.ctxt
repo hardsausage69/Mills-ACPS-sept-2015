@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=args
+comment0.target=void\ main(java.lang.String[])
+comment1.params=
+comment1.target=java.lang.String\ getADate()
+comment2.params=inputName
+comment2.target=void\ damage(java.lang.String)
+comment3.params=theirName\ tickets\ flowers\ pictures\ dinner\ clothes\ expenses
+comment3.target=void\ statsTable(java.lang.String,\ double,\ double,\ double,\ double,\ double,\ double)
+numComments=4
