@@ -1,4 +1,5 @@
 //Allen Ng checkpoint 2
+//Parse int http://stackoverflow.com/questions/5585779/converting-string-to-int-in-java
 import java.util.*;
 
 public class FracCalc {
@@ -30,35 +31,70 @@ public class FracCalc {
         String firstOperand = input.substring(0, operatorSpace);
         String secondOperand = input.substring(operatorSpace + 3, stringLength);
         //return secondOperand;
-        String operand1Pieces = operandBreakdown(firstOperand);
-        String operand2Pieces = operandBreakdown(secondOperand);
-        return operand2Pieces;
+        int whole1 = operandWhole(firstOperand);
+        int whole2 = operandWhole(secondOperand);
+        int numerator1 = operandNumerator(firstOperand);
+        int numerator2 = operandNumerator(secondOperand);
+        int denominator1 = operandDenominator(firstOperand);
+        int denominator2 = operandDenominator(secondOperand);
+        String stringComponents = "whole:" + whole2 + " numerator:" + numerator2 + " denominator:" + denominator2;
+        return stringComponents;
+        String mixedNumber1 = mixedFraction(whole1, numerator1, denominator1);
+        String mixedNumber2 = mixedFraction(whole2, numerator2, denominator2);
 
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
-    public static String operandBreakdown(String operand){
+    public static int operandWhole(String operand){
         int operandLength = operand.length();
         int space = operand.indexOf("_");
         int fraction = operand.indexOf("/");
-        String whole;
-        String numerator;
-        String denominator;
+        String wholeStr;
         if (fraction == -1){
-            whole = operand;
-            numerator = "0";
-            denominator = "1";
+            wholeStr = operand;
         } else if (space == -1){
-            whole = "0";
-            numerator = operand.substring(0, fraction);
-            denominator = operand.substring(fraction + 1, operandLength);
+            wholeStr = "0";
         } else {
-            whole = operand.substring(0, space);
-            numerator = operand.substring(space + 1, fraction);
-            denominator = operand.substring(fraction + 1, operandLength);
+            wholeStr = operand.substring(0, space);
         }
-        String stringComponents = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
-        return stringComponents;
-
+        int whole = Integer.parseInt(wholeStr);
+        return whole;
     }
+    
+    public static String operandNumerator(String operand){
+        int operandLength = operand.length();
+        int space = operand.indexOf("_");
+        int fraction = operand.indexOf("/");
+        String numeratorStr;
+        if (fraction == -1){
+            numeratorStr = "0";
+        } else if (space == -1){
+            numeratorStr = operand.substring(0, fraction);
+        } else {
+            numeratorStr = operand.substring(space + 1, fraction);
+        }
+        int num = Integer.parseInt(numeratorStr);
+        return num;
+    }
+    
+    public static String operandDenominator(String operand){
+        int operandLength = operand.length();
+        int space = operand.indexOf("_");
+        int fraction = operand.indexOf("/");
+        String denominatorStr;
+        if (fraction == -1){
+            denominatorStr = "1";
+        } else if (space == -1){
+            denominatorStr = operand.substring(fraction + 1, operandLength);
+        } else {
+            denominatorStr = operand.substring(fraction + 1, operandLength);
+        }
+        int denom = Integer.parseInt(denominatorStr);
+        return denom;
+    }
+    
+    public static String mixedFraction(int whole, int num, int denom){
+        String mixedFrac = ((whole * denom) + num ) + "/" + denom;
+    }
+        
 }
