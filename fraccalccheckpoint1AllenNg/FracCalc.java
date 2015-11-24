@@ -1,3 +1,4 @@
+//Allen Ng checkpoint 2
 import java.util.*;
 
 public class FracCalc {
@@ -38,7 +39,7 @@ public class FracCalc {
     // TODO: Fill in the space below with any helper methods that you think you will need
     public static String operandBreakdown(String operand){
         int operandLength = operand.length();
-        int space = operand.indexOf(" ");
+        int space = operand.indexOf("_");
         int fraction = operand.indexOf("/");
         String whole;
         String numerator;
@@ -50,13 +51,13 @@ public class FracCalc {
         } else if (space == -1){
             whole = "0";
             numerator = operand.substring(0, fraction);
-            denominator = operand.substring(fraction, operandLength);
+            denominator = operand.substring(fraction + 1, operandLength);
         } else {
             whole = operand.substring(0, space);
-            numerator = operand.substring(space, fraction);
-            denominator = operand.substring(fraction, operandLength);
+            numerator = operand.substring(space + 1, fraction);
+            denominator = operand.substring(fraction + 1, operandLength);
         }
-        String stringComponents = "whole: " + whole + " numerator: " + numerator + " denominator: " + denominator;
+        String stringComponents = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
         return stringComponents;
 
     }
