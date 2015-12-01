@@ -31,10 +31,24 @@ public class FracCalc {
         String firstOperand = input.substring(0, operatorSpace);
         String secondOperand = input.substring(operatorSpace + 3, stringLength);
         //return secondOperand;
-        int whole1 = operandWhole(firstOperand);
-        int whole2 = operandWhole(secondOperand);
-        int numerator1 = operandNumerator(firstOperand);
-        int numerator2 = operandNumerator(secondOperand);
+        String wholeUnknown1 = operandWhole(firstOperand);
+        int numerator1;
+        int negativeOrNot1 = wholeUnknown1.indexOf("-");
+        if (negativeOrNot1 != -1){
+            numerator1 = operandNumerator(firstOperand) * -1;
+        } else {
+            numerator1 = operandNumerator(firstOperand);
+        }
+        int whole1 = Integer.parseInt(wholeUnknown1);
+        String wholeUnknown2 = operandWhole(secondOperand);
+        int numerator2;
+        int negativeOrNot2 = wholeUnknown2.indexOf("-");
+        if (negativeOrNot2 != -1){
+            numerator2 = operandNumerator(secondOperand) * -1;
+        } else {
+            numerator2 = operandNumerator(secondOperand);
+        }
+        int whole2 = Integer.parseInt(wholeUnknown2);
         int denominator1 = operandDenominator(firstOperand);
         int denominator2 = operandDenominator(secondOperand);
         String stringComponents = "whole:" + whole2 + " numerator:" + numerator2 + " denominator:" + denominator2;
@@ -47,16 +61,21 @@ public class FracCalc {
         int improperDenom2 = parsedImpropDenom(mixedNumber2);
         int operatorIndex = input.indexOf(" ") + 1;
         String operator = input.substring(operatorIndex, operatorIndex + 1);
-        String singleImprop
+        String singleImprop;
         if (operator.equals("+")){
-        singleImprop = addImprop(improperNum1,improperNum2, improperDenom1, improperDenom2);
-    } else if (operator.equals("-")){
-        singleImprop = 
+            singleImprop = addImprop(improperNum1,improperNum2, improperDenom1, improperDenom2);
+        } else if (operator.equals("-")){
+            singleImprop = subtractImprop(improperNum1, improperNum2, improperDenom1, improperDenom2);
+        } else if (operator.equals("*")){
+            singleImprop = multiplyImprop(improperNum1, improperNum2, improperDenom1, improperDenom2);
+        } else {
+            singleImprop = divideImprop(improperNum1, improperNum2, improperDenom1, improperDenom2);
+        }
         return singleImprop;
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
-    public static int operandWhole(String operand){
+    public static String operandWhole(String operand){
         int operandLength = operand.length();
         int space = operand.indexOf("_");
         int fraction = operand.indexOf("/");
@@ -68,10 +87,9 @@ public class FracCalc {
         } else {
             wholeStr = operand.substring(0, space);
         }
-        int whole = Integer.parseInt(wholeStr);
-        return whole;
+        return wholeStr;
     }
-    
+
     public static int operandNumerator(String operand){
         int operandLength = operand.length();
         int space = operand.indexOf("_");
@@ -87,7 +105,7 @@ public class FracCalc {
         int num = Integer.parseInt(numeratorStr);
         return num;
     }
-    
+
     public static int operandDenominator(String operand){
         int operandLength = operand.length();
         int space = operand.indexOf("_");
@@ -103,12 +121,12 @@ public class FracCalc {
         int denom = Integer.parseInt(denominatorStr);
         return denom;
     }
-    
+
     public static String mixedFraction(int whole, int num, int denom){
         String mixedFrac = ((whole * denom) + num ) + "/" + denom;
         return mixedFrac;
     }
-    
+
     public static int parsedImpropNum(String improperFrac){
         int impropFracLength = improperFrac.length();
         int divisionIndex = improperFrac.indexOf("/");
@@ -121,7 +139,7 @@ public class FracCalc {
         int numerator = Integer.parseInt(numString);
         return numerator;
     }
-    
+
     public static int parsedImpropDenom(String improperFrac){
         int impropFracLength = improperFrac.length();
         int divisionIndex = improperFrac.indexOf("/");
@@ -134,11 +152,34 @@ public class FracCalc {
         int denominator = Integer.parseInt(denString);
         return denominator;
     }
-    
+
     public static String addImprop(int num1, int num2, int denom1, int denom2){
-        int newNum1 = (num1 * denom2) + (num2 * denom1);
+        int newNum = (num1 * denom2) + (num2 * denom1);
         int newDenom = denom1 * denom2;
-        String singleFrac = newNum1 + "/" + newDenom;
+        String singleFrac = newNum + "/" + newDenom;
+        return singleFrac;
+    }
+    
+    public static String subtractImprop(int num1, int num2, int denom1, int denom2){
+        int newNum = (num1 * denom2) - (num2 * denom1);
+        int newDenom = denom1 * denom2;
+        String singleFrac = newNum + "/" + newDenom;
+        return singleFrac;
+    }
+    
+    public static String multiplyImprop(int num1, int num2, int denom1, int denom2){
+        int newNum = num1 * num2;
+        int newDenom = denom1 * denom2;
+        String singleFrac = newNum + "/" + newDenom;
+        return singleFrac;
+    }
+    
+    public static String divideImprop(int num1, int num2, int denom1, int denom2){
+        int newNum2 = denom2;
+        int newDenom2 = num2;
+        int newNum = num1 * newNum2;
+        int newDenom = denom1 * newDenom2;
+        String singleFrac = newNum + "/" + newDenom;
         return singleFrac;
     }
 }
