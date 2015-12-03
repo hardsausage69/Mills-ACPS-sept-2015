@@ -71,7 +71,9 @@ public class FracCalc {
         } else {
             singleImprop = divideImprop(improperNum1, improperNum2, improperDenom1, improperDenom2);
         }
-        return singleImprop;
+        //return singleImprop;
+        String finalFraction = reduction(singleImprop);
+        return finalFraction;
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
@@ -159,21 +161,21 @@ public class FracCalc {
         String singleFrac = newNum + "/" + newDenom;
         return singleFrac;
     }
-    
+
     public static String subtractImprop(int num1, int num2, int denom1, int denom2){
         int newNum = (num1 * denom2) - (num2 * denom1);
         int newDenom = denom1 * denom2;
         String singleFrac = newNum + "/" + newDenom;
         return singleFrac;
     }
-    
+
     public static String multiplyImprop(int num1, int num2, int denom1, int denom2){
         int newNum = num1 * num2;
         int newDenom = denom1 * denom2;
         String singleFrac = newNum + "/" + newDenom;
         return singleFrac;
     }
-    
+
     public static String divideImprop(int num1, int num2, int denom1, int denom2){
         int newNum2 = denom2;
         int newDenom2 = num2;
@@ -182,4 +184,54 @@ public class FracCalc {
         String singleFrac = newNum + "/" + newDenom;
         return singleFrac;
     }
-}
+
+    public static String reduction(String frac){
+        int fracLength = frac.length();
+        int fracOperator = frac.indexOf("/");
+        String numStr;
+        String denomStr;
+        String fracFinal;
+        if (fracOperator != -1){
+            numStr = frac.substring(0, fracOperator);
+            denomStr = frac.substring(fracOperator + 1, fracLength);
+        } else {
+            num = "0";
+            denom = "0";
+        }
+        int num = Integer.parseInt(numStr);
+        int denom = Integer.parseInt(denomStr);
+        int whole = 0;
+        if (Math.abs(num) > denom){
+            whole = num / denom;
+            num = num % denom;
+            for (int i = 2; i <= (1/2) * (denom); i++){
+                if(num % i == 0 && denom % i == 0){
+                    num = num / i;
+                    denom = denom / i;
+                    i = 2;
+                }
+            }
+        } else if (Math.abs(num) < denom){
+            for (int i = 2; i <= (1/2) * (denom); i++){
+                if(num % i == 0 && denom % i == 0){
+                    num = num / i;
+                    denom = denom / i;
+                    i = 2;
+                }
+            }
+        } else if (num == 0){
+            fracFinal = whole + " ";
+        } else {
+            whole = 1;
+        }
+        if (whole < 0){
+            num = Math.abs(num);
+        }
+        if (num != denom && whole != 0){
+            fracFinal = whole + " " + num + "/" + denom;
+        } else if (num == denom){
+            fracFinal = whole + " ";
+        } 
+
+    }
+
