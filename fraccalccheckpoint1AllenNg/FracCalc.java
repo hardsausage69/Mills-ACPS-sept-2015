@@ -231,7 +231,10 @@ public class FracCalc {
             fracFinal = whole + " " + num + "/" + denom;
         } else if (num == denom){
             fracFinal = whole + " ";
-        } 
+            wholeSpace = fracFinal.indexOf(" ");
+            fracFinal = fracFinal.substring(0, wholeSpace);
+        } else if (num != denom && whole == 0){
+            fracFinal = 
 
     }
 
