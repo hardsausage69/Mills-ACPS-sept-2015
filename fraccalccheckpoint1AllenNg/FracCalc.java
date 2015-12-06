@@ -186,6 +186,7 @@ public class FracCalc {
     }
 
     public static String reduction(String frac){
+        int i = 2;
         int fracLength = frac.length();
         int fracOperator = frac.indexOf("/");
         String numStr;
@@ -195,46 +196,76 @@ public class FracCalc {
             numStr = frac.substring(0, fracOperator);
             denomStr = frac.substring(fracOperator + 1, fracLength);
         } else {
-            num = "0";
-            denom = "0";
+            numStr = "0";
+            denomStr = "0";
         }
         int num = Integer.parseInt(numStr);
         int denom = Integer.parseInt(denomStr);
         int whole = 0;
-        if (Math.abs(num) > denom){
+        if (Math.abs(num) > Math.abs(denom)){
             whole = num / denom;
             num = num % denom;
-            for (int i = 2; i <= (1/2) * (denom); i++){
-                if(num % i == 0 && denom % i == 0){
-                    num = num / i;
-                    denom = denom / i;
-                    i = 2;
+            if (num != 0){
+                while (i <= denom){
+                    if(num % i == 0 && denom % i == 0){
+                        num = num / i;
+                        denom = denom / i;
+                        i = 1;
+                    }
+                    i++;
                 }
-            }
-        } else if (Math.abs(num) < denom){
-            for (int i = 2; i <= (1/2) * (denom); i++){
-                if(num % i == 0 && denom % i == 0){
-                    num = num / i;
-                    denom = denom / i;
-                    i = 2;
+                if (whole < 0){
+                    num = Math.abs(num);
                 }
-            }
-        } else if (num == 0){
-            fracFinal = whole + " ";
-        } else {
-            whole = 1;
-        }
-        if (whole < 0){
-            num = Math.abs(num);
-        }
-        if (num != denom && whole != 0){
-            fracFinal = whole + " " + num + "/" + denom;
-        } else if (num == denom){
-            fracFinal = whole + " ";
-            wholeSpace = fracFinal.indexOf(" ");
-            fracFinal = fracFinal.substring(0, wholeSpace);
-        } else if (num != denom && whole == 0){
-            fracFinal = 
+                if (num < 0 && denom < 0){
+                    num = Math.abs(num);
+                    denom = Math.abs(denom);
+                    while (i <= denom){
+                        if(num % i == 0 && denom % i == 0){
+                            num = num / i;
+                            denom = denom / i;
+                            i = 1;
+                        }
+                        i++;
+                    }
+                }
+                if (num >0 && denom < 0){
+                    denom = Math.abs(denom);
+                    while (i <= denom){
+                        if(num % i == 0 && denom % i == 0){
+                            num = num / i;
+                            denom = denom / i;
+                            i = 1;
+                        }
+                        i++;
+                    }
 
+                }
+                fracFinal = whole + "_" + num + "/" + denom;
+            } else {
+                fracFinal = whole + " ";
+                int wholeSpace = fracFinal.indexOf(" ");
+                fracFinal = fracFinal.substring(0, wholeSpace);
+            }
+        } else if (Math.abs(num) < Math.abs(denom)){
+            while (i <= denom){
+                if(num % i == 0 && denom % i == 0){
+                    num = num / i;
+                    denom = denom / i;
+                    i = 1;
+                }
+                i++;
+            }
+            fracFinal = num + "/" + denom;
+        } else if (num == 0){
+            fracFinal = "0";
+        } else {
+            fracFinal = "1";
+        }
+        if (num == 0 && whole == 0){
+            fracFinal = "0";
+        }
+        return fracFinal;
     }
+}
 
