@@ -36,31 +36,6 @@ public class Magpie3
 		{
 			response = "Say something, please.";
 		}
-		 else if (statement.indexOf("day") >= 0)
-        {
-            response = "I like to dream of ponies and biscuits.";
-        }
-        else if (statement.indexOf("dream") >= 0)
-        {
-            response = "No. Don't even talk to me. You don't deserve to.";
-        }
-        else if (statement.indexOf("fake") >= 0)
-        {
-            response = "Oh my god bruh. No, I can't even right now. Just no.";
-        }
-        else if (statement.indexOf("cat") >= 0
-                || statement.indexOf("dog") >= 0)
-        {
-            response = "Tell me more about your pets.";
-        }
-        else if (statement.indexOf("Mr.") >= 0)
-        {
-            response = "He seems like a wonderful teacher.";
-        }
-        else if (statement.indexOf("Ms.") >= 0)
-        {
-            response = "She seems like a wonderful teacher.";
-        }
 		else if (findKeyword(statement, "no") >= 0)
 		{
 			response = "Why so negative?";
@@ -190,15 +165,6 @@ public class Magpie3
 		{
 			response = "You don't say.";
 		}
-		else if (whichResponse == 4)
-        {
-            response = "Gottem.";
-        }
-        else if (whichResponse == 5)
-        {
-            response = "Huehuehuehuehuehue.";
-        }
-
 
 		return response;
 	}
