@@ -111,6 +111,8 @@ public class Magpie4
         {
             statement = statement.substring(0, statement.length() - 1);
         }
+        int psnOfI = findKeyword(statement, "I", 0);
+        //int psnOfYou = findKeyword(statement, "you", psnOfI + 
         return statement;
     }
     
@@ -138,9 +140,6 @@ public class Magpie4
         String restOfStatement = statement.substring(psnOfYou + 3, psnOfMe).trim();
         return "What makes you think that I " + restOfStatement + " you?";
     }
-    
-    
-
     
     
     /**
@@ -220,7 +219,6 @@ public class Magpie4
         return findKeyword (statement, goal, 0);
     }
     
-
 
     /**
      * Pick a default response to use if nothing else fits.
