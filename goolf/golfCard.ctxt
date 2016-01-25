@@ -1,2 +1,4 @@
 #BlueJ class context
-numComments=0
+comment0.params=hole\ par\ pers
+comment0.target=void\ compareParPers(int,\ int,\ int)
+numComments=1
