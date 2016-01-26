@@ -1,4 +1,8 @@
 #BlueJ class context
 comment0.params=hole\ par\ pers
 comment0.target=void\ compareParPers(int,\ int,\ int)
-numComments=1
+comment1.params=input
+comment1.target=int\ parChange(java.lang.String)
+comment2.params=input
+comment2.target=int\ persChange(java.lang.String)
+numComments=3
