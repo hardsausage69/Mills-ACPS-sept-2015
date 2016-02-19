@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.params=input
+comment0.target=void\ setLineNum(java.lang.String)
+comment1.params=
+comment1.target=int\ getLineNum()
+comment2.params=input
+comment2.target=void\ trim(java.lang.String)
+comment3.params=input
+comment3.target=void\ setPlayerPos(java.lang.String)
+comment4.params=
+comment4.target=int\ getPositionA()
+comment5.params=
+comment5.target=int\ getPositionB()
+comment6.params=lineNumber\ positionA\ positionB
+comment6.target=void\ results(int,\ int,\ int)
+numComments=7
