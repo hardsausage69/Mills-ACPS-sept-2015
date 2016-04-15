@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Car()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Car\r\n
+comment1.params=color\ year\ make
+comment1.target=Car(java.lang.String,\ int,\ java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ special\ form\ of\ class\ Car\ for\ new\ car\r\n
+comment2.params=
+comment2.target=void\ smogCheck()
+comment2.text=\r\n\ Tell\ owner\ to\ do\ the\ smog\ check\ \r\n
+comment3.params=
+comment3.target=java.lang.String\ toString()
+comment3.text=\r\n\ toString\ method\ for\ car\r\n
+numComments=4
